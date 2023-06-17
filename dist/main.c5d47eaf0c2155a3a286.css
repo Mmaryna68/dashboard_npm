@@ -1,0 +1,86 @@
+/*@import "libs/normalize.css"; */
+/*@import "style/fonts"; */
+/*@import "style/var";*/
+/*@import "style/style"; */
+body {
+  background-color: aqua;
+}
+/* Стили для контейнера диаграммы 
+#chartContainer {
+  width: 400px;
+  height: 300px;
+  margin: 20px auto;
+} */
+/* Стили для заголовка */
+h1 {
+  text-align: center;
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+/* стили для левой боковой панели */
+#sidebar {
+  width: 20%;
+  background-color: #f5f5f5;
+}
+/* стили для доски с графиками */
+#main {
+  width: 60%;
+  background-color: #ffffff;
+}
+/* стили для панели с профилем страницы */
+#footer {
+  width: 20%;
+  background-color: #f5f5f5;
+}
+/* стили для ссылок в панели с профилем */
+#footer a {
+  color: #000000;
+  text-decoration: none;
+}
+/* стили для JavaScript-графиков */
+.chart-container {
+  width: 100%;
+  height: 300px;
+}
+/* стили для задач */
+.task {
+  margin-bottom: 10px;
+  padding: 10px;
+  border: 1px solid #e0e0e0;
+  background-color: #ffffff;
+}
+/* Пример CSS-стилей для статуса задачи */
+.task-status {
+  font-weight: bold;
+}
+.profile-info {
+  margin-bottom: 10px;
+}
+.profile-info h4 {
+  font-weight: bold;
+}
+.profile-info p {
+  margin: 0;
+}
+/* Стили для списка задач 
+ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+} */
+
+/* Стили для элементов списка задач 
+li {
+  margin-bottom: 10px;
+} */
+
+/* Стили для имени задачи 
+.task-name {
+  font-weight: bold;
+} */
+
+/* Стили для прогресса задачи 
+.task-progress {
+  font-style: italic;
+} */
+
