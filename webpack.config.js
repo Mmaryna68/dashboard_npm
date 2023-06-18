@@ -41,6 +41,35 @@ module.exports = {
         ],
       },
       {
+        test: /\.(jpe?g|png|webp|gif|svg)$/i,
+        use: devMode
+          ? []
+          : [
+              {
+                loader: "image-webpack-loader",
+                options: {
+                  mozjpeg: {
+                    progressive: true,
+                  },
+                  optipng: {
+                    enabled: false,
+                  },
+                  pngquant: {
+                    quality: [0.65, 0.9],
+                    speed: 4,
+                  },
+                  gifsicle: {
+                    interlaced: false,
+                  },
+                  webp: {
+                    quality: 75,
+                  },
+                },
+              },
+            ],
+        type: "asset/resource",
+      },
+      {
         test: /\.m?js$/i,
         exclude: /(node_modules|bower_components)/,
         use: {

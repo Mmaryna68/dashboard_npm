@@ -111,7 +111,7 @@ import _ from "lodash";
 
     const statusElement = document.createElement("p");
     statusElement.classList.add("task-status");
-    statusElement.textContent = `Статус: ${task.progress}`;
+    statusElement.textContent = `Статус: ${task.status}`;
     taskElement.appendChild(statusElement);
 
     const dateElement = document.createElement("p");
@@ -130,6 +130,8 @@ import _ from "lodash";
 
     return taskElement;
   }
+  // Вызов функции для отображения задач
+  displayTasks();
 
   // Функция для отображения данных о профиле
   function displayProfile() {
@@ -138,10 +140,6 @@ import _ from "lodash";
     profileNameElement.textContent = "Maryna O";
     profilePositionElement.textContent = "Web Developer";
   }
-
-  // Вызов функции для отображения задач
-  displayTasks();
-
   // Вызов функции для отображения данных о профиле
   displayProfile();
 })();
