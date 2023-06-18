@@ -7,9 +7,33 @@ import _ from "lodash";
 (async function () {
   // Массив данных о задачах
   const tasks = [
-    { name: "Task 1", progress: 70, date: "2023-06-10", priority: 2 },
-    { name: "Task 2", progress: 40, date: "2023-06-11", priority: 1 },
-    { name: "Task 3", progress: 90, date: "2023-06-12", priority: 3 },
+    {
+      name: "Task 1: Разработка интерфейса",
+      progress: 70,
+      date: "2023-06-10",
+      priority: 2,
+      status: "In Progress",
+      description:
+        "Задача по разработке пользовательского интерфейса для нового веб-приложения. Необходимо создать прототипы, дизайн и реализовать интерфейс с использованием HTML, CSS и JavaScript.",
+    },
+    {
+      name: "Task 2: Тестирование функционала",
+      progress: 40,
+      date: "2023-06-11",
+      priority: 1,
+      status: "Pending",
+      description:
+        "Задача по тестированию функционала веб-приложения. Требуется написать и выполнить тестовые сценарии, выявить и исправить возможные ошибки и несоответствия требованиям.",
+    },
+    {
+      name: "Task 3: Оптимизация производительности",
+      progress: 90,
+      date: "2023-06-12",
+      priority: 3,
+      status: "Completed",
+      description:
+        "Задача по оптимизации производительности веб-приложения. Необходимо исследовать и улучшить скорость работы приложения, оптимизировать запросы к базе данных и устранить узкие места в коде.",
+    },
   ];
 
   // Создание графика с использованием Chart.js
@@ -18,7 +42,7 @@ import _ from "lodash";
   // Обработка данных о задачах
   const taskData = processData(tasks); // Обработка данных с помощью Lodash
   const taskLabels = taskData.map((task) => task.label);
-  const taskCounts = taskData.map((task) => task.count);
+  const taskProgress = taskData.map((task) => task.progress);
 
   new Chart(ctx, {
     type: "bar",
@@ -26,8 +50,8 @@ import _ from "lodash";
       labels: taskLabels,
       datasets: [
         {
-          label: "Количество задач",
-          data: taskCounts,
+          label: "Прогресс задач",
+          data: taskProgress,
           backgroundColor: "rgba(75, 192, 192, 0.6)",
         },
       ],
@@ -36,7 +60,10 @@ import _ from "lodash";
       scales: {
         y: {
           beginAtZero: true,
-          stepSize: 1,
+          max: 100, // Максимальное значение шкалы установлено на 100
+          ticks: {
+            stepSize: 10, // Шаг шкалы установлен на 10
+          },
         },
       },
     },
@@ -44,16 +71,23 @@ import _ from "lodash";
 
   // Функция для обработки данных о задачах
   function processData(tasks) {
-    const groupedTasks = _.groupBy(tasks, "status"); // Группировка задач по статусу с помощью Lodash
+    const groupedTasks = _.groupBy(tasks, "status");
 
     const processedData = _.map(groupedTasks, (tasks, status) => {
       return {
         label: status,
         count: tasks.length,
+        progress: calculateAverageProgress(tasks), // Добавление значения прогресса
       };
     });
 
     return processedData;
+  }
+
+  // Функция для вычисления среднего значения прогресса
+  function calculateAverageProgress(tasks) {
+    const totalProgress = tasks.reduce((sum, task) => sum + task.progress, 0);
+    return Math.round(totalProgress / tasks.length);
   }
 
   // Функция для отображения задач на странице
@@ -72,16 +106,16 @@ import _ from "lodash";
     taskElement.classList.add("task");
 
     const titleElement = document.createElement("h3");
-    titleElement.textContent = task.title;
+    titleElement.textContent = task.name;
     taskElement.appendChild(titleElement);
 
     const statusElement = document.createElement("p");
     statusElement.classList.add("task-status");
-    statusElement.textContent = `Статус: ${task.status}`;
+    statusElement.textContent = `Статус: ${task.progress}`;
     taskElement.appendChild(statusElement);
 
     const dateElement = document.createElement("p");
-    const formattedDate = moment(task.date).format("DD.MM.YYYY"); // форматирования даты задачи с помощью moment
+    const formattedDate = moment(task.date).format("DD.MM.YYYY"); // форматирование даты задачи с помощью moment
     dateElement.textContent = `Дата: ${formattedDate}`;
     taskElement.appendChild(dateElement);
 
@@ -96,56 +130,18 @@ import _ from "lodash";
 
     return taskElement;
   }
-});
-// Вызов функции для отображения задач
-displayTasks();
 
-/*// Использование Moment.js для форматирования даты задачи
-const formattedDates = tasks.map((task) =>
-  moment(task.date).format("YYYY-MM-DD")
-);
+  // Функция для отображения данных о профиле
+  function displayProfile() {
+    const profileNameElement = document.getElementById("profile-name");
+    const profilePositionElement = document.getElementById("profile-position");
+    profileNameElement.textContent = "Maryna O";
+    profilePositionElement.textContent = "Web Developer";
+  }
 
-// Использование Lodash для сортировки задач по приоритету/
-const sortedTasks = _.sortBy(tasks, "priority");
+  // Вызов функции для отображения задач
+  displayTasks();
 
-// Создание массивов для данных диаграммы
-const labels = sortedTasks.map((task) => task.name);
-const values = sortedTasks.map((task) => task.progress);
-
-// Получение данных из JSON
-fetch("tasks.json")
-  .then((response) => response.json())
-  .then((data) => {
-    const fetchedLabels = data.map((task) => task.name);
-    const fetchedValues = data.map((task) => task.progress);
-
-    // Создание диаграммы
-    const ctx = document.getElementById("chartContainer").getContext("2d");
-    new Chart(ctx, {
-      type: "bar",
-      data: {
-        labels: fetchedLabels,
-        datasets: [
-          {
-            label: "Progress",
-            data: fetchedValues,
-            backgroundColor: "rgba(75, 192, 192, 0.6)",
-            borderColor: "rgba(75, 192, 192, 1)",
-            borderWidth: 1,
-          },
-        ],
-      },
-      options: {
-        responsive: true,
-        scales: {
-          y: {
-            beginAtZero: true,
-            max: 100,
-          },
-        },
-      },
-    });
-  })
-  .catch((error) => {
-    console.error("Error:", error);
-  });*/
+  // Вызов функции для отображения данных о профиле
+  displayProfile();
+})();

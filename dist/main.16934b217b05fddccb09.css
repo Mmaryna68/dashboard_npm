@@ -55,6 +55,11 @@ h1 {
 }
 .profile-info {
   margin-bottom: 10px;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: baseline;
+  gap: 15px;
 }
 .profile-info h4 {
   font-weight: bold;
