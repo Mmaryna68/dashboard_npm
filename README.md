@@ -2,8 +2,9 @@
 
 # Project "Task Management Dashboard"
 
-![1 Page](Снимок экрана 2023-08-30 в 5.49.30 PM.png)
-![2 Page](Снимок экрана 2023-08-30 в 5.50.01 PM.png)
+![Снимок экрана 2023-08-30 в 5 49 30 PM](https://github.com/Mmaryna68/dashboard_npm/assets/119791149/77f4ff78-7aad-441a-a99a-5fd1cc031130)
+
+![Снимок экрана 2023-08-30 в 5 50 01 PM](https://github.com/Mmaryna68/dashboard_npm/assets/119791149/1dc9abde-4899-4781-a913-f5e9c86bc261)
 
 This project is an interactive dashboard for managing tasks, built using HTML, CSS, and JavaScript. It visualizes task data through charts and provides a user-friendly interface for viewing and managing tasks.
 
