@@ -2,8 +2,8 @@
 
 # Project "Task Management Dashboard"
 
-![Example Project Screenshot](dashboard.png)
-![Example Project Screenshot](dashboard_task.png)
+![1 Page](Снимок экрана 2023-08-30 в 5.49.30 PM.png)
+![2 Page](Снимок экрана 2023-08-30 в 5.50.01 PM.png)
 
 This project is an interactive dashboard for managing tasks, built using HTML, CSS, and JavaScript. It visualizes task data through charts and provides a user-friendly interface for viewing and managing tasks.
 
